@@ -1,3 +1,18 @@
+body {
+  background: rgb(143, 143, 143);
+  padding: 0px;
+  margin: 0px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 16px;
+}
+
+.space {
+  display: inline;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  color: #5d8ffc;
+}
 
 .h7 {
   font-size: 0.8rem;
@@ -6,7 +21,9 @@
 .gedf-wrapper {
   margin-top: 0.97rem;
 }
-
+.card-header{
+  display: flex;
+}
 @media (min-width: 992px) {
   .gedf-main {
       padding-left: 4rem;
@@ -15,20 +32,6 @@
   .gedf-card {
       margin-bottom: 2.77rem;
   }
-}
-
-/**Reset Bootstrap*/
-.dropdown-toggle::after {
-  content: none;
-  display: none;
-}
-
-body {
-  background: #777;
-  padding: 0px;
-  margin: 0px;
-  font-family: 'Nunito', sans-serif;
-  font-size: 16px;
 }
 
 input, button {
