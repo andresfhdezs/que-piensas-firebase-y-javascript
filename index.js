@@ -46,15 +46,14 @@ firebase.auth().onAuthStateChanged(function (user) {
         user_photo.innerHTML = '<img src="' + profile.photoURL + '" alt="" class="img-fluid card-img-top rounded-circle">';
       });
 
-
-
       // Leer Post
-      var post = document.getElementById('post');
+      var feeds = document.getElementById('feeds');
+      
       db.collection("posts").where("userId", "==", user.uid).onSnapshot((querySnapshot) => {
         querySnapshot.forEach((doc) => {
-          post.innerHTML == '';
+          
           console.log(`${doc.id} => ${doc.data()}`);
-          post.innerHTML += `
+          feeds.innerHTML += `
             <div class="card-header">
               <div class="d-flex justify-content-between align-items-center">
                 <div class="d-flex justify-content-between align-items-center">
@@ -85,7 +84,7 @@ firebase.auth().onAuthStateChanged(function (user) {
 						<a href="#" class="card-link">
               <i class="fa fa-mail-forward"></i> Share</a>
               <button class="space" onclick="eliminar('${doc.id}')">Eliminar</button>
-              <button class="space" onclick="editar('${doc.id}','${doc.data().first}','${doc.data().last}','${doc.data().born}')">Editar</button>
+              <button class="space" onclick="editar('${doc.id}','${doc.data().post}')">Editar</button>
 					</div>
 					<div class="card-footer ">
 						
@@ -103,8 +102,8 @@ firebase.auth().onAuthStateChanged(function (user) {
 
     document.getElementById("user_div").style.display = "none";
     document.getElementById("login_div").style.display = "block";
-    var tabla = document.getElementById('tabla');
-    tabla.innerHTML = '';
+    var post = document.getElementById('post');
+    
     console.log("usuario no activo");
   }
 });
@@ -154,14 +153,12 @@ function guardar() {
 
   var alert = document.getElementById('alert');
   var user = firebase.auth().currentUser;
-
   db.collection("posts").add({
     post: post,
     userId: user.uid,
   })
     .then(function (docRef) {
       console.log("Document written with ID: ", docRef.id);
-      document.getElementById('post').value = '';
 
       alert.innerHTML = '<div id="alert" class="alert alert-primary" role="alert">Post agregado</div>';
     })
@@ -173,8 +170,8 @@ function guardar() {
 // Borrar post
 function eliminar(id) {
   db.collection("posts").doc(id).delete().then(function () {
+    limpiar();
     console.log("Document successfully deleted!");
-    document.getElementById('post').innerHTML='';
   }).catch(function (error) {
     console.error("Error removing document: ", error);
   });
@@ -206,4 +203,13 @@ function editar(id, post) {
       });
   }
 
+}
+
+function limpiar(){
+  $('#feeds').remove();
+  var midiv = document.createElement("div");
+		midiv.setAttribute("id","feeds");
+    //midiv.innerHTML = "<p>Este es el contenido de mi div</p>";
+    document.getElementById('content-feeds').appendChild(midiv);
+    //document.body.appendChild(midiv); // Lo pones en "body", si quieres ponerlo dentro de algún id en concreto usas 
 }
