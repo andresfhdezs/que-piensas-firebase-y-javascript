@@ -1,11 +1,11 @@
 // Initialize Firebase
 var config = {
-  apiKey: "AIzaSyCpGxX_3Ku1pknQ2fGlKnlLbaabSKafI5Q",
-  authDomain: "fir-web-login-f4ebb.firebaseapp.com",
-  databaseURL: "https://fir-web-login-f4ebb.firebaseio.com",
-  projectId: "fir-web-login-f4ebb",
-  storageBucket: "fir-web-login-f4ebb.appspot.com",
-  messagingSenderId: "960970973180"
+  apiKey: "Tu_apiKey",
+  authDomain: "tu_aplicacion.firebaseapp.com",
+  databaseURL: "https://tu_base_de_datos_aplicacion.firebaseio.com",
+  projectId: "tu_id_de_ptoyecto",
+  storageBucket: "tu_storage_bucket.appspot.com",
+  messagingSenderId: "tu_id_de_envios_de_mendajes"
 };
 firebase.initializeApp(config);
 var name, email, photoUrl, uid, emailVerified;
